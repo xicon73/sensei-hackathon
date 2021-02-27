@@ -2,3 +2,4 @@
 + Falar com o Álvaro
 - Cenas fixes bro
 - Cenas fixes bro
+[ ] Cenas fixes bro
