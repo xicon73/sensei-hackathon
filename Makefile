@@ -20,8 +20,27 @@ sync:
 	@echo "Rota para recever a todo list que está guardada"
 
 add:
-	@echo - $(todo) >> todolist-`date +'%d.%m.%y'`.md
+	@echo - [ ] $(todo) >> todolist-`date +'%d.%m.%y'`.md
+	@git add todolist-`date +'%d.%m.%y'`.md
+	@git commit -m "$(todo)"
 	@echo "Item added to your todolist"
+
+remove:
+
+complete:
+# - [ ]
+# - [x]
 
 cenas:
 	# @echo $(item) >> todolist-`date +'%d.%m.%y'`.md
+	# Usar git para adicionar
+	# 
+
+
+install:
+	@alias create_todolist="make create_todolist"
+	@alias delete_todolist="make remove_todolist"
+	@alias show_todolist="make show_todolist"
+	@alias add_todolist="make add"
+
+open work tools:
