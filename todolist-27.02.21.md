@@ -4,4 +4,4 @@
 - Cenas fixes bro
 [ ] Cenas fixes bro
 - [ ] Fazer um commit
-- Qualquer coisa
+- [x] Chatear alguém <span style="color:red"> ***chato*** </span>
