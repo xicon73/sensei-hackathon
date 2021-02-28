@@ -26,7 +26,6 @@ complete_all:
 	@python -c "import sys;lines=sys.stdin.read();print lines.replace('[ ]','[x]')" < todolist-`date +'%d.%m.%y'`.md > todolist-new-`date +'%d.%m.%y'`.md
 	@rm -f todolist-`date +'%d.%m.%y'`.md
 	@mv todolist-new-`date +'%d.%m.%y'`.md todolist-`date +'%d.%m.%y'`.md
-	# @sed -i '' -e '/^$/d' todolist-`date +'%d.%m.%y'`.md
 
 save:
 	@echo "Saving your todolist"
@@ -106,39 +105,3 @@ commands:
 
 final:
 	@echo "Terminei o meu dia de trabalho - `date +'%H:%M'`" >> todolist-`date +'%d.%m.%y'`.md
-
-
-	# @python -c "import sys;import re;lines=re.sub(r'(?i)interfaceOpDataFile', 'interfaceOpDataFile %s' % filein, lines); lines[`expr $(todo) - $(i)`]=lines[`expr $(todo) - $(i)`].replace('[ ]','[x]');print lines" < todolist-28.02.21.md > todolist-new-28.02.21.md
-
-
-# @python -c "
-# import sys;
-#     with open(sys.stidin,'r') as f:
-#         texto=f.readlines();
-#         texto[index]=string
-#     with open(path,'w') as f:
-#         write(texto)
-
-
-
-# lines=sys.stdin.readlines(); cenas = lines[`expr $(todo) - $(i)`]; linha = cenas.replace('[ ]','[x]'); lines[`expr $(todo) - $(i)`] = linha; print lines" < todolist-`date +'%d.%m.%y'`.md > todolist-new-`date +'%d.%m.%y'`.md
-
-# def encontrar_string(path,index,string):
-#     with open(path,'r') as f:
-#         texto=f.readlines()
-#         texto[index]=string
-#     with open(path,'w') as f:
-#         write(texto)
-
-
-
-# # import sys;
-
-# # lines=sys.stdin.readlines();
-# # lines[`expr $(todo) - $(i)`]=lines[`expr $(todo) - $(i)`].replace('[ ]','[x]')
-# # print lines" < todolist-28.02.21.md > todolist-new-28.02.21.md
-
-
-# # i = 1--x
-
-# # line[i-1] => [ ] em [x]
