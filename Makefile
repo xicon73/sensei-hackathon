@@ -11,15 +11,15 @@ remove_todolist:
 
 show_todolist:
 	@echo "Items":
-	@if grep -F "[" todolist-`date +'%d.%m.%y'`.md; then echo; else echo "Não tens items na tua todolist "; fi
+	@if grep -F "[" todolist-`date +'%d.%m.%y'`.md; then echo; else echo "Não tens items na tua todolist"; fi
 
 show_completed:
 	@echo "Items Completos":
-	@ifn not grep -F "[x]" todolist-`date +'%d.%m.%y'`.md; then echo grep -F "[x]" todolist-`date +'%d.%m.%y'`.md; else echo "Não tens items por concluir "; fi
+	@if grep -F "[x]" todolist-`date +'%d.%m.%y'`.md; then echo; else echo "Não tens items por concluídos"; fi
 
 show_todo:
 	@echo "Items por Concluir":
-	@ifn grep -F "[ ]" todolist-`date +'%d.%m.%y'`.md; then grep -F "[ ]" todolist-`date +'%d.%m.%y'`.md; else echo "Não tens items concluídos "; fi
+	@if grep -F "[ ]" todolist-`date +'%d.%m.%y'`.md; then echo; else echo "Não tens items concluir"; fi
 
 complete_all:
 	@python -c "import sys;lines=sys.stdin.read();print lines.replace('[ ]','[x]')" < todolist-`date +'%d.%m.%y'`.md > todolist-new-`date +'%d.%m.%y'`.md
@@ -38,11 +38,7 @@ add:
 	@echo "- [ ] $(todo)" >> todolist-`date +'%d.%m.%y'`.md
 	@echo "Item added to your todolist"
 
-add_timed:
-	# Soon to be met
-
 complete:
-	#imprimir tudo direito
 	@python -c "import sys;lines=sys.stdin.readlines();lines[`expr $(todo) - $(i)`]=lines[`expr $(todo) - $(i)`].replace('[ ]','[x]');print lines" < todolist-28.02.21.md > todolist-new-28.02.21.md
 	@rm -f todolist-`date +'%d.%m.%y'`.md
 	@mv todolist-new-`date +'%d.%m.%y'`.md todolist-`date +'%d.%m.%y'`.md
@@ -54,13 +50,14 @@ install:
 	@alias add_todolist="make add"
 	@alias work="open_work_tools"
 	@alias app="open"
+	@alias startm='cd /Applications/MAMP/bin && ./start.sh'
 
 open_work_tools:
 	@open /Applications/MAMP/MAMP.app
-	# ligar o server
+	@cd /Users/francisco/sensei-hackathon 
 	@open /Applications/Microsoft\ Teams.app
 	@open /Applications/Spectacle.app
-	# @open /Applications/Visual\ Studio\ Code.app
+	@open /Applications/Visual\ Studio\ Code.app
 	@open -a /Applications/Google\ Chrome.app 'https://uphups.uphill.test'
 
 
@@ -82,10 +79,9 @@ info:
 	@echo "Para conheceres todos os comandos, escreve commands"
 
 start_work: open_work_tools create_todolist info
-	@echo "- Comecei o meu dia de trabalho - `date +'%d.%m.%y'`" >> todolist-`date +'%d.%m.%y'`.md
+	@echo "Comecei o meu dia de trabalho - `date +'%H:%M'`" >> todolist-`date +'%d.%m.%y'`.md
 
-
-end_work: save
+end_work: final save
 	osascript -e 'quit app "Microsoft Teams"'
 	osascript -e 'quit app "Visual Studio Code"'
 	osascript -e 'quit app "Spectacle"'
@@ -105,3 +101,6 @@ commands:
 	@echo "Caso pretendas ver as tarefas em falta, escreve todo"
 	@echo "Caso pretendas ver as tarefas executadas, escreve completed"
 	@echo "Caso pretendas ver todas as tarefas, escreve show"
+
+final:
+	@echo "Terminei o meu dia de trabalho - `date +'%H:%M'`" >> todolist-`date +'%d.%m.%y'`.md

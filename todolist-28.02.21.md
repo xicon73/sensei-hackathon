@@ -1,3 +1,3 @@
-- Comecei o meu dia de trabalho - 28.02.21
-- [x] Dizer olá ao barca
-
+- [ ] Dizer olá ao barca
+Comecei o meu dia de trabalho - 12.22
+Comecei o meu dia de trabalho - 12:22
