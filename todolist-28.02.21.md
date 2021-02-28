@@ -1,2 +1,3 @@
-['- [x] Dizer \xc3\xa0 Mar que gosto muito dela\n']
-- [ ] Ver a bd
+- Comecei o meu dia de trabalho - 28.02.21
+- [x] Dizer olá ao barca
+

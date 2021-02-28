@@ -1,26 +1,25 @@
 i=1
+day=`date +'%d.%m.%y'`
 
 create_todolist:
 	@touch todolist-`date +'%d.%m.%y'`.md
 	@echo "Created Todolist"
-
-login:
-	@curl
 
 remove_todolist:
 	@rm todolist-`date +'%d.%m.%y'`.md
 	@echo "Todolist removed"
 
 show_todolist:
-	@echo "Items:"
-	@cat todolist-`date +'%d.%m.%y'`.md
+	@echo "Items":
+	@if grep -F "[" todolist-`date +'%d.%m.%y'`.md; then echo; else echo "Não tens items na tua todolist "; fi
 
 show_completed:
-	@grep -F "[x]" todolist-`date +'%d.%m.%y'`.md
+	@echo "Items Completos":
+	@ifn not grep -F "[x]" todolist-`date +'%d.%m.%y'`.md; then echo grep -F "[x]" todolist-`date +'%d.%m.%y'`.md; else echo "Não tens items por concluir "; fi
 
 show_todo:
-	@grep -F "[ ]" todolist-27.02.21.md
-	# @grep -F "[ ]" todolist-`date +'%d.%m.%y'`.md
+	@echo "Items por Concluir":
+	@ifn grep -F "[ ]" todolist-`date +'%d.%m.%y'`.md; then grep -F "[ ]" todolist-`date +'%d.%m.%y'`.md; else echo "Não tens items concluídos "; fi
 
 complete_all:
 	@python -c "import sys;lines=sys.stdin.read();print lines.replace('[ ]','[x]')" < todolist-`date +'%d.%m.%y'`.md > todolist-new-`date +'%d.%m.%y'`.md
@@ -33,6 +32,7 @@ save:
 	@git commit -m "Finish my day"
 	@git push
 	@echo "Todolist saved"
+	@open -a /Applications/Google\ Chrome.app "https://github.com/xicon73/sensei-hackathon/blob/master/todolist-$(day).md"
 
 add:
 	@echo "- [ ] $(todo)" >> todolist-`date +'%d.%m.%y'`.md
@@ -82,18 +82,26 @@ info:
 	@echo "Para conheceres todos os comandos, escreve commands"
 
 start_work: open_work_tools create_todolist info
+	@echo "- Comecei o meu dia de trabalho - `date +'%d.%m.%y'`" >> todolist-`date +'%d.%m.%y'`.md
+
 
 end_work: save
 	osascript -e 'quit app "Microsoft Teams"'
-	# osascript -e 'quit app "Visual Studio Code"'
+	osascript -e 'quit app "Visual Studio Code"'
 	osascript -e 'quit app "Spectacle"'
 	osascript -e 'quit app "MAMP"'
 	osascript -e 'quit app "Google Chrome"'
-	@open -a /Applications/Google\ Chrome.app 'https://www.instagram.com'
-	@open -a /Applications/Google\ Chrome.app 'https://www.twitter.com'
-	@open -a /Applications/Google\ Chrome.app 'https://www.facebook.com'
+	@open -a /Applications/Google\ Chrome.app 'https://www.seium.org'
 
 commands:
-
-begin test:
-	@echo "
+	@echo "Para veres memes, escreve memes meme=meme_a_pesquisar"
+	@echo "Para veres formações do cesium, escreve learn"
+	@echo "Para começares um dia de trabalho, escreve start_work"
+	@echo "Para terminares um dia de trabalho, escreve end_work"
+	@echo "Para abrir uma aplicação, escreve open app=nome_da_app"
+	@echo "Para gravares a tua todolist, escreve save"
+	@echo "Caso pretendas apagar a tua todolist diária, escreve delete"
+	@echo "Caso tenhas terminado a tua todolist diária, podes criar uma nova, escrevendo new_todolist"
+	@echo "Caso pretendas ver as tarefas em falta, escreve todo"
+	@echo "Caso pretendas ver as tarefas executadas, escreve completed"
+	@echo "Caso pretendas ver todas as tarefas, escreve show"
