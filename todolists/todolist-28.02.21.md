@@ -1,0 +1,5 @@
+- [X] Terminar o Pitch
+- [ ] Pedir à organização para abrir a roleta para todos
+- [ ] Vender a alma por 100 tokens
+- [ ] Martinho és lindo
+- [ ] Éramos seis e finalizamos dois
