@@ -40,6 +40,9 @@ add:
 	@echo "Item added to your todolist"
 
 complete:
+	@git add .
+	
+new_complete:
 	@python -c "import string; import sys;lines=sys.stdin.readlines(); cenas = lines[`expr $(todo) - $(i)`]; linha = cenas.replace('[ ]','[x]'); lines[`expr $(todo) - $(i)`] = linha; print '\n'.join(lines)" < todolist-`date +'%d.%m.%y'`.md > todolist-new-`date +'%d.%m.%y'`.md
 	@rm -f todolist-`date +'%d.%m.%y'`.md
 	@mv todolist-new-`date +'%d.%m.%y'`.md todolist-`date +'%d.%m.%y'`.md
@@ -55,11 +58,14 @@ install:
 
 open_work_tools:
 	@open /Applications/MAMP/MAMP.app
-	@cd /Users/francisco/sensei-hackathon 
 	@open /Applications/Microsoft\ Teams.app
-	@open /Applications/Spectacle.app
-	@open /Applications/Visual\ Studio\ Code.app
-	@open -a /Applications/Google\ Chrome.app 'https://uphups.uphill.test'
+	@open /Applications/Spotify.app
+	
+novas_cenas:
+	# @cd /Users/francisco/sensei-hackathon 
+	# @open /Applications/Spectacle.app
+	# @open /Applications/Visual\ Studio\ Code.app
+	# @open -a /Applications/Google\ Chrome.app 'https://uphups.uphill.test'
 
 
 open:
