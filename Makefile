@@ -15,11 +15,11 @@ show_todolist:
 
 show_completed:
 	@echo "Items Completos":
-	@if grep -F "[x]" todolist-`date +'%d.%m.%y'`.md; then echo; else echo "Não tens items por concluídos"; fi
+	@if grep -F "[x]" todolist-`date +'%d.%m.%y'`.md; then echo; else echo "Não tens items concluídos"; fi
 
 show_todo:
 	@echo "Items por Concluir":
-	@if grep -F "[ ]" todolist-`date +'%d.%m.%y'`.md; then echo; else echo "Não tens items concluir"; fi
+	@if grep -F "[ ]" todolist-`date +'%d.%m.%y'`.md; then echo; else echo "Não tens items por concluir"; fi
 
 complete_all:
 	@python -c "import sys;lines=sys.stdin.read();print lines.replace('[ ]','[x]')" < todolist-`date +'%d.%m.%y'`.md > todolist-new-`date +'%d.%m.%y'`.md
@@ -65,7 +65,7 @@ open:
 	@open /Applications/$(app).app
 
 cry:
-	@open -a /Applications/Google\ Chromxe.app 'https://giphy.com/search/cry'
+	@open -a /Applications/Google\ Chrome.app 'https://giphy.com/search/cry'
 
 memes:
 	@open -a /Applications/Google\ Chrome.app 'https://giphy.com/search/$(shell echo "${meme}" | sed -e 's/ /-/g')'
@@ -75,7 +75,7 @@ learn:
 
 info:
 	@echo "Para adicionar artigos à sua todo list, escreve add todo=todo_to_add"
-	@echo "Quando terminares de tralar podes consultar o estado da tua todo list. Basta escreveres end"
+	@echo "Quando terminares de trabalhar podes consultar o estado da tua todo list. Basta escreveres end"
 	@echo "Para conheceres todos os comandos, escreve commands"
 
 start_work: open_work_tools create_todolist info
